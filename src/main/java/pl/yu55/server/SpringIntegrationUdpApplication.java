@@ -1,14 +1,18 @@
-package pl.yu55;
+package pl.yu55.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("spring-integration-context-01.xml")
-public class SpringIntegrationTutorialApplication {
+@ImportResource("spring-integration-udp.xml")
+public class SpringIntegrationUdpApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringIntegrationTutorialApplication.class, args);
+        SpringApplication.run(SpringIntegrationUdpApplication.class, args);
+
+        while (true) {
+
+        }
     }
 }
