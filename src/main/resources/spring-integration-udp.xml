@@ -3,23 +3,23 @@
        xmlns:int="http://www.springframework.org/schema/integration"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:ip="http://www.springframework.org/schema/integration/ip"
-       xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
-	http://www.springframework.org/schema/integration/ip http://www.springframework.org/schema/integration/ip/spring-integration-ip.xsd http://www.springframework.org/schema/integration/stream http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd">
+    http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+    http://www.springframework.org/schema/integration/ip http://www.springframework.org/schema/integration/ip/spring-integration-ip.xsd">
 
     <int:publish-subscribe-channel id="publishSubscribeChannel"/>
 
     <ip:udp-inbound-channel-adapter id="UdpInboundReceiverChannelAdapter"
                                     channel="publishSubscribeChannel"
-                                    local-address="localhost"
-                                    port="5555"
+                                    local-address="${udp.address}"
+                                    port="${udp.port}"
                                     multicast="false"
                                     check-length="false"
+                                    receive-buffer-size="1024"
                                     pool-size="10"
             />
 
-    <int-stream:stdout-channel-adapter
-            id="consumer1" channel="publishSubscribeChannel" append-newline="true" />
+    <int:service-activator ref="udpEchoServiceActivator"
+                           input-channel="publishSubscribeChannel"/>
 
 </beans>

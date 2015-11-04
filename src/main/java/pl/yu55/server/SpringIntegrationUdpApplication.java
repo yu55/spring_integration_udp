@@ -12,7 +12,6 @@ public class SpringIntegrationUdpApplication {
         SpringApplication.run(SpringIntegrationUdpApplication.class, args);
 
         while (true) {
-
         }
     }
 }
