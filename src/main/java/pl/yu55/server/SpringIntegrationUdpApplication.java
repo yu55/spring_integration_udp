@@ -8,10 +8,11 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource("spring-integration-udp.xml")
 public class SpringIntegrationUdpApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(SpringIntegrationUdpApplication.class, args);
 
         while (true) {
+            Thread.sleep(1000);
         }
     }
 }
